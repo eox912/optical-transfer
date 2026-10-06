@@ -1,0 +1,70 @@
+{
+  "name": "optical-transfer-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "光学隔空传输 · 桌面版（真置顶全屏码窗 + 屏幕不睡眠）",
+  "main": "www/main.js",
+  "scripts": {
+    "build:www": "node build.mjs",
+    "start": "npm run build:www && electron .",
+    "smoke": "npm run build:www && electron . --smoke-test",
+    "dist:win": "npm run build:www && electron-builder --win --x64",
+    "dist:mac": "npm run build:www && electron-builder --mac --dir"
+  },
+  "build": {
+    "appId": "cn.optical.transfer.desktop",
+    "productName": "OpticalTransfer",
+    "copyright": "光学隔空传输",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "www/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "artifactName": "${productName}-Setup-${version}-${arch}.${ext}"
+    },
+    "portable": {
+      "artifactName": "${productName}-Portable-${version}-${arch}.${ext}"
+    },
+    "mac": {
+      "target": [
+        "dir"
+      ],
+      "category": "public.app-category.utilities"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Utility"
+    }
+  },
+  "devDependencies": {
+    "electron": "^44.4.1",
+    "electron-builder": "^26.15.3"
+  },
+  "author": "光学隔空传输",
+  "license": "MIT"
+}

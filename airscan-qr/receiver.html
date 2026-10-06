@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 刻意不加 CSP meta（PLUGIN-SPEC §3.1） -->
+    <title>AirScan 扫码接收</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body class="receiver-body">
+    <header class="rc-head">
+      <div>
+        <h1>扫码接收</h1>
+        <p class="muted" id="backend">解码后端：js（等待描述符）</p>
+      </div>
+      <div class="rc-head__tools">
+        <button class="btn btn--ghost" id="capture-screen" type="button">截图识别</button>
+        <button class="btn btn--ghost" id="pick-image" type="button">选择图片</button>
+        <button class="btn btn--ghost" id="close-window" type="button">关闭</button>
+      </div>
+    </header>
+
+    <section class="rc-stage">
+      <video id="camera" playsinline muted></video>
+      <canvas id="work" class="hidden-canvas"></canvas>
+      <div class="rc-stage__hud">
+        <span class="pill" id="mode">等待描述符帧…</span>
+      </div>
+    </section>
+
+    <p class="status" id="status">正在初始化…</p>
+
+    <section class="rc-stats">
+      <div class="rc-bar"><div class="rc-bar__fill" id="progress-bar"></div></div>
+      <dl class="kv">
+        <dt>进度</dt>
+        <dd id="progress-text">0%</dd>
+        <dt>已收 / 需要</dt>
+        <dd><span id="received">0</span> / <span id="needed">0</span></dd>
+        <dt>有效帧率</dt>
+        <dd id="rate">0.0 帧/秒</dd>
+        <dt>耗时</dt>
+        <dd id="elapsed">0s</dd>
+      </dl>
+    </section>
+
+    <section class="rc-fallback" id="fallback" hidden>
+      <h2>摄像头不可用时的降级路径</h2>
+      <p class="muted" id="warn" hidden>
+        没有摄像头也能收：让发送端保持播放，用手机/相机把每一帧拍下来，或直接截屏；
+        然后把图片全部选中导入即可。**必须凑齐一轮里的全部分片**（顺序模式漏一片都还原不出来）。
+      </p>
+      <div class="actions">
+        <button class="btn btn--primary" id="pick-image-2" type="button" hidden></button>
+        <button class="btn" id="retry-camera" type="button">重试摄像头</button>
+      </div>
+      <p class="muted">
+        也可以直接按 <kbd>Ctrl/Cmd+V</kbd> 粘贴剪贴板里的图片，或用右上角的「截图识别」。
+      </p>
+    </section>
+
+    <section class="rc-result" id="result" hidden>
+      <h2>接收完成</h2>
+      <dl class="kv">
+        <dt>文件名</dt>
+        <dd id="result-name">—</dd>
+        <dt>大小</dt>
+        <dd id="result-size">—</dd>
+      </dl>
+      <textarea id="result-text" rows="6" hidden></textarea>
+      <div class="actions" id="result-actions"></div>
+    </section>
+
+    <input type="file" id="image-input" accept="image/*" multiple hidden />
+
+    <script>
+      window.__ASQ_RECEIVER_PAGE__ = true
+    </script>
+    <script src="vendor/qrcode-generator.js"></script>
+    <script src="vendor/jsQR.js"></script>
+    <script src="core/protocol.js"></script>
+    <script src="core/fountain.js"></script>
+    <script src="core/qr.js"></script>
+    <script src="core/scan.js"></script>
+    <script src="core/codecs.js"></script>
+    <script src="receiver.js"></script>
+  </body>
+</html>

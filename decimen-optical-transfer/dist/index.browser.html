@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 刻意不加 Content-Security-Policy meta：uTools 以本地协议加载页面，
+         origin 是 opaque 的，`script-src 'self'` 会把脚本直接拦掉 → 白屏 -->
+    <title>隔空传输（DOT）</title>
+    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <img class="hero__logo" src="logo.png" alt="logo" />
+      <div class="hero__meta">
+        <h1 class="hero__title">隔空传输 · 光码（DOT）</h1>
+        <p class="hero__sub" id="hero-sub">正在初始化…</p>
+      </div>
+      <span class="badge" id="engine-badge">JS 内核</span>
+    </header>
+
+    <main class="panel" id="panel"></main>
+
+    <p class="boot-error" id="boot-error" hidden>
+      页面脚本没有启动成功。请用 uTools 开发者工具重新接入本插件，并在窗口里按
+      Ctrl/Cmd + Shift + I 打开控制台查看具体报错。
+    </p>
+
+    <div class="toast" id="toast"></div>
+
+    <!-- 共享核心：加载顺序固定 vendor 两个 → core 五个（codecs.js 最后） -->
+    <script src="vendor/qrcode-generator.js"></script>
+    <script src="vendor/jsQR.js"></script>
+    <script src="utools-shim.js"></script>
+    <script src="core/protocol.js"></script>
+    <script src="core/fountain.js"></script>
+    <script src="core/qr.js"></script>
+    <script src="core/scan.js"></script>
+    <script src="core/codecs.js"></script>
+
+    <!-- 插件自身：classic script（非 ESM），顺序即依赖顺序 -->
+    <script src="util.js"></script>
+    <script src="protocol-ext.js"></script>
+    <script src="session.js"></script>
+    <script src="stream.js"></script>
+    <script src="dom.js"></script>
+    <script src="index.js"></script>
+    <script src="browser-shell.js"></script>
+
+    <script>
+      /* 纯 classic 脚本，把"白屏"变成可读的提示 */
+      setTimeout(function () {
+        if (!window.DOT || !window.DOT.booted) {
+          var node = document.getElementById('boot-error')
+          if (node) node.hidden = false
+        }
+      }, 2500)
+    </script>
+  </body>
+</html>

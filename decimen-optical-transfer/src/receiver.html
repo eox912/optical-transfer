@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>光码接收（DOT）</title>
+    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="receiver.css" />
+  </head>
+  <body class="receiver">
+    <section class="cam">
+      <video id="video" autoplay muted playsinline></video>
+      <canvas id="probe" hidden></canvas>
+      <div class="cam__empty" id="cam-empty">正在请求摄像头…</div>
+      <div class="cam__fps" id="cam-fps"></div>
+    </section>
+
+    <section class="info">
+      <div class="row">
+        <span class="badge" id="mode-badge">等待描述符帧</span>
+        <span class="badge" id="hash-badge">等待校验</span>
+        <span class="badge" id="engine-badge">JS 内核</span>
+      </div>
+
+      <div class="bar"><div class="bar__fill" id="bar"></div></div>
+
+      <dl class="kv" id="stats"></dl>
+      <div class="actions" id="actions"></div>
+      <p class="hint" id="note"></p>
+    </section>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="vendor/qrcode-generator.js"></script>
+    <script src="vendor/jsQR.js"></script>
+    <!-- 接收端加载 RaptorQ WASM 内核的胶水（wasm 本体由 preload 用 fs 读成 ArrayBuffer 再 instantiate，
+         不用 instantiateStreaming，也不走 CDN）。加载失败会被如实上报，不影响前两种模式。 -->
+    <script src="vendor/raptorq.core.js"></script>
+    <script src="core/protocol.js"></script>
+    <script src="core/fountain.js"></script>
+    <script src="core/qr.js"></script>
+    <script src="core/scan.js"></script>
+    <script src="core/codecs.js"></script>
+
+    <script src="util.js"></script>
+    <script src="protocol-ext.js"></script>
+    <script src="session.js"></script>
+    <script src="stream.js"></script>
+    <script src="dom.js"></script>
+    <script src="receiver.js"></script>
+
+    <script>
+      setTimeout(function () {
+        if (!window.DOT || !window.DOT.receiverBooted) {
+          var node = document.getElementById('note')
+          if (node) node.textContent = '接收窗脚本没有启动成功，请打开开发者工具查看报错。'
+        }
+      }, 2500)
+    </script>
+  </body>
+</html>

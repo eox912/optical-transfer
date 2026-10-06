@@ -1,0 +1,18 @@
+# 依赖
+node_modules/
+
+# 安卓构建产物（60MB 里绝大部分是这些）
+android/build/
+android/app/build/
+android/.gradle/
+android/local.properties
+*.apk
+*.aab
+
+# www/ 是 build.mjs 的生成物（核心从 ../shared 拷过来）。
+# 忽略它可以让"协议漂移"无处藏身：拿到仓库必须先 npm run build:www，
+# 而 build.mjs 会自检 www/core 与 shared/core 逐字节一致。
+www/
+
+.DS_Store
+*.log

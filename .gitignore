@@ -1,0 +1,29 @@
+# ============================================================
+# 根 .gitignore
+#
+# 各子项目还有自己的 .gitignore（desktop-app / android-app / raptorqr /
+# browser-extension / demo-utools-plugin），这里只兜住根目录层面容易漏的东西。
+#
+# ⚠️ 刻意**不**加一条全局 `dist/`：
+#   - uTools 插件的 `dist/` 是**交付物本身**（uTools 直接加载 dist/plugin.json），
+#     所以 raptorqr/dist 与 decimen-optical-transfer/dist 是要提交的；
+#   - 桌面版 / 安卓 / 浏览器扩展的 dist|www 是 build.mjs 的生成物，各自目录里忽略了。
+# ============================================================
+
+# ---- 依赖 ----
+node_modules/
+
+# ---- 构建产物（各子项目已忽略，这里冗余兜一层）----
+desktop-app/www/
+core-rs/target/
+
+# ---- 编辑器 / 系统 / 日志 ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+
+# ---- 本机配置（含绝对路径，绝不入库）----
+# 例如 android-app/android/local.properties 里的 sdk.dir=/Users/xxx/...
+local.properties

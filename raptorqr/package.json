@@ -1,0 +1,19 @@
+{
+  "name": "raptorqr-utools-plugin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "RaptorQR —— uTools 光学隔空传输插件（Rust→WASM RaptorQ 核心 + 多码并行）",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node build.mjs && node test/plugin.test.js",
+    "check": "node build.mjs && for f in dist/*.js dist/core/*.js dist/vendor/*.js; do node --check \"$f\" || exit 1; done && echo '所有 dist js 语法通过'"
+  },
+  "keywords": [
+    "utools",
+    "utools-plugin",
+    "raptorq",
+    "qr",
+    "optical-transfer"
+  ],
+  "license": "MIT"
+}

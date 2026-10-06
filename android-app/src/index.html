@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark light" />
+    <title>光学隔空传输</title>
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <header class="tabs">
+      <button id="tab-send" class="tab is-on" type="button">发送</button>
+      <button id="tab-recv" class="tab" type="button">接收</button>
+      <span id="env-badge" class="badge">…</span>
+    </header>
+
+    <main>
+      <!-- ============================= 发送 ============================= -->
+      <section id="view-send" class="view is-on">
+        <div class="card">
+          <button id="pick" class="primary big" type="button">选择文件</button>
+          <div id="file-info" class="muted">还没有选择文件</div>
+        </div>
+
+        <div class="card">
+          <label class="field">
+            <span>编码模式</span>
+            <select id="mode"></select>
+          </label>
+          <p id="mode-blurb" class="muted small"></p>
+
+          <label class="field">
+            <span>切片大小 <b id="slice-val"></b></span>
+            <input id="slice" type="range" min="0" max="5" value="0" />
+          </label>
+          <label class="field">
+            <span>帧率 <b id="fps-val"></b></span>
+            <input id="fps" type="range" min="0" max="5" value="0" />
+          </label>
+          <div id="plan-info" class="muted small">选文件后显示传输计划</div>
+        </div>
+
+        <button id="start" class="primary big" type="button" disabled>开始发送</button>
+        <p class="muted small tip">
+          开始后屏幕会<strong>常亮并调到最亮</strong>，请把手机屏幕对准接收端的摄像头。
+        </p>
+      </section>
+
+      <!-- ============================= 接收 ============================= -->
+      <section id="view-recv" class="view">
+        <div class="stage">
+          <video id="video" playsinline autoplay muted></video>
+          <canvas id="scan-canvas" hidden></canvas>
+          <div id="recv-hud" class="hud">点下方「开启摄像头」</div>
+        </div>
+
+        <div class="card">
+          <div id="recv-mode" class="muted small">等待描述符帧…</div>
+          <div class="bar"><div id="recv-bar"></div></div>
+          <div id="recv-stats" class="muted small">—</div>
+          <div class="row">
+            <button id="cam-start" class="primary" type="button">开启摄像头</button>
+            <button id="save" type="button" disabled>保存文件</button>
+          </div>
+          <button id="import-frame" class="ghost" type="button">摄像头不可用？导入帧图片</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- =========================== 全屏码窗 =========================== -->
+    <div id="codeview" hidden>
+      <canvas id="code-canvas"></canvas>
+      <div id="code-hud"></div>
+      <button id="stop" class="stop" type="button">停止</button>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <!-- 加载顺序：vendor 全部 → core 全部（codecs 最后）→ 原生封装 → App -->
+    <script src="vendor/qrcode-generator.js"></script>
+    <script src="vendor/jsQR.js"></script>
+    <script src="vendor/raptorq.core.js"></script>
+    <script src="core/protocol.js"></script>
+    <script src="core/fountain.js"></script>
+    <script src="core/qr.js"></script>
+    <script src="core/scan.js"></script>
+    <script src="core/codecs.js"></script>
+    <script src="native.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

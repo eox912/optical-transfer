@@ -1,0 +1,7 @@
+node_modules/
+# 打包产物（106MB × 2）
+dist/
+# 生成物：build.mjs 从 ../shared 与 ../android-app/src 组装
+www/
+.DS_Store
+*.log

@@ -1,0 +1,23 @@
+{
+  "main": "index.html",
+  "logo": "logo.png",
+  "preload": "preload.js",
+  "pluginSetting": { "single": true, "height": 620 },
+  "features": [
+    {
+      "code": "dot-send",
+      "explain": "打开发送面板：选文件 → 生成动态二维码流",
+      "cmds": ["隔空传输 DOT", "光码传输"]
+    },
+    {
+      "code": "dot-receive",
+      "explain": "打开摄像头接收窗口，扫描还原文件",
+      "cmds": ["扫描光码 DOT", "光码接收"]
+    },
+    {
+      "code": "dot-send-files",
+      "explain": "把选中的文件隔空发送",
+      "cmds": [{ "type": "files", "label": "隔空发送（DOT）", "maxLength": 50 }]
+    }
+  ]
+}

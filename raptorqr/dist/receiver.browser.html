@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 不要加 CSP meta（本地协议下 origin 是 opaque 的，会白屏） -->
+    <title>RaptorQR · 接收</title>
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <div class="rq-rx">
+      <div class="rq-rx__stage">
+        <video id="rx-video" playsinline autoplay muted></video>
+        <div class="rq-rx__hint" id="rx-hint">正在启动摄像头…</div>
+      </div>
+
+      <aside class="rq-rx__side">
+        <section class="card">
+          <header class="card__head">
+            <h2 class="card__title">接收状态</h2>
+            <span class="badge" id="rx-mode">等待描述符</span>
+          </header>
+          <div class="card__body">
+            <div class="progress" id="rx-progress-wrap"><i id="rx-progress"></i></div>
+            <dl class="kv">
+              <dt>文件名</dt>
+              <dd id="rx-name">—</dd>
+              <dt>大小</dt>
+              <dd id="rx-size">—</dd>
+              <dt>进度</dt>
+              <dd id="rx-count">—</dd>
+              <dt>解码后端</dt>
+              <dd id="rx-backend">—</dd>
+              <dt>接收分区</dt>
+              <dd id="rx-strategy">—</dd>
+              <dt>画面</dt>
+              <dd id="rx-frame">—</dd>
+            </dl>
+            <div class="actions">
+              <button class="btn btn--primary" id="rx-save" disabled>保存文件</button>
+              <button class="btn btn--ghost" id="rx-reset">重新开始</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <header class="card__head">
+            <h2 class="card__title">接收设置</h2>
+          </header>
+          <div class="card__body">
+            <label class="field">
+              <span>接收分区（同屏几个码）</span>
+              <select id="rx-slots">
+                <option value="0">自动识别（先按 4 码找）</option>
+                <option value="1">1 码</option>
+                <option value="2">2 码横排</option>
+                <option value="4">4 码田字格</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>摄像头</span>
+              <select id="rx-camera">
+                <option value="">默认摄像头</option>
+              </select>
+            </label>
+            <p class="hint" id="rx-scan-note">
+              识别方式：整幅先试一次，再按分区多次调用 jsQR（jsQR 一次只认一个码，这里是"分区多次识别"）。
+            </p>
+          </div>
+        </section>
+
+        <section class="card">
+          <header class="card__head">
+            <h2 class="card__title">摄像头不可用？</h2>
+          </header>
+          <div class="card__body">
+            <p class="hint">uTools 底座未授权摄像头时，可以用这两种方式照样收：</p>
+            <div class="actions">
+              <button class="btn" id="rx-capture">框选截图识别</button>
+              <button class="btn" id="rx-import">导入图片识别</button>
+            </div>
+            <p class="hint">截图/图片里只要是同一个码流，一样能凑齐符号还原。</p>
+          </div>
+        </section>
+      </aside>
+    </div>
+
+    <script src="vendor/qrcode-generator.js"></script>
+    <script src="vendor/jsQR.js"></script>
+    <script src="vendor/raptorq.core.js"></script>
+    <script src="utools-shim.js"></script>
+    <script src="core/protocol.js"></script>
+    <script src="core/fountain.js"></script>
+    <script src="core/qr.js"></script>
+    <script src="core/scan.js"></script>
+    <script src="raptorq-core.js"></script>
+    <script src="core/codecs.js"></script>
+    <script src="layout.js"></script>
+    <script src="settings.js"></script>
+    <script src="multiscan.js"></script>
+    <script src="receiver.js"></script>
+  </body>
+</html>

@@ -1,0 +1,313 @@
+/* app.css —— 三个页面共用的设计令牌与基础组件 */
+
+:root {
+  --bg: #f4f5f7;
+  --panel: #ffffff;
+  --text: #1f2328;
+  --muted: #6b7280;
+  --border: #e6e8ec;
+  --brand: #4a7dff;
+  --brand-soft: rgba(74, 125, 255, 0.12);
+  --ok: #12b76a;
+  --bad: #f04438;
+  --warn: #f79009;
+  --radius: 12px;
+  --shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 6px 20px rgba(16, 24, 40, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16181d;
+    --panel: #1e2127;
+    --text: #e7e9ec;
+    --muted: #9aa1ab;
+    --border: #2c3038;
+    --brand: #6d95ff;
+    --brand-soft: rgba(109, 149, 255, 0.18);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.35);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  padding: 14px 16px 18px;
+  font: 13px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ------------------------------- 顶部信息区 ------------------------------- */
+
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.hero__logo {
+  width: 42px;
+  height: 42px;
+  flex: none;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+.hero__meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.hero__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.hero__sub {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.badge {
+  flex: none;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--brand-soft);
+  color: var(--brand);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.badge--ok {
+  background: rgba(18, 183, 106, 0.14);
+  color: var(--ok);
+}
+
+.badge--bad {
+  background: rgba(240, 68, 56, 0.14);
+  color: var(--bad);
+}
+
+.badge--warn {
+  background: rgba(247, 144, 9, 0.16);
+  color: var(--warn);
+}
+
+/* --------------------------------- 卡片 --------------------------------- */
+
+.cards {
+  display: grid;
+  gap: 10px;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.card__head {
+  padding: 9px 13px;
+  border-bottom: 1px solid var(--border);
+}
+
+.card__title {
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.card__body {
+  display: grid;
+  gap: 10px;
+  padding: 11px 13px;
+}
+
+/* ------------------------------ 键值对列表 ------------------------------ */
+
+.kv {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 4px 12px;
+  margin: 0;
+}
+
+.kv__k {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.kv__v {
+  margin: 0;
+  word-break: break-all;
+  font-variant-numeric: tabular-nums;
+}
+
+.kv__v--mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11.5px;
+}
+
+/* --------------------------------- 按钮 --------------------------------- */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.btn {
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.05s ease;
+}
+
+.btn:hover:not(:disabled) {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+.btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn--primary {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #fff;
+}
+
+.btn--primary:hover:not(:disabled) {
+  color: #fff;
+  filter: brightness(1.06);
+}
+
+.btn--ghost {
+  background: transparent;
+}
+
+.btn--bad {
+  border-color: var(--bad);
+  color: var(--bad);
+}
+
+/* --------------------------------- 其它 --------------------------------- */
+
+.hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.field {
+  display: grid;
+  gap: 4px;
+}
+
+.field__label {
+  color: var(--muted);
+  font-size: 11.5px;
+}
+
+.select {
+  padding: 5px 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+  min-width: 104px;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11.5px;
+  word-break: break-all;
+}
+
+/* --------------------------------- Toast -------------------------------- */
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  max-width: 82%;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #1f2328;
+  color: #fff;
+  font-size: 12px;
+  opacity: 0;
+  transform: translate(-50%, 12px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  word-break: break-all;
+  z-index: 50;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.toast--success {
+  background: var(--ok);
+}
+
+.toast--error {
+  background: var(--bad);
+}
+
+.boot-error {
+  margin: 10px 0 0;
+  padding: 8px 10px;
+  border: 1px solid var(--bad);
+  border-radius: 8px;
+  color: var(--bad);
+  font-size: 12px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: var(--border);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://raw.githubusercontent.com/uTools-Labs/utools-api-types/refs/heads/main/resource/utools.schema.json",
+  "main": "index.html",
+  "logo": "logo.png",
+  "preload": "preload.js",
+  "pluginSetting": {
+    "single": true,
+    "height": 544
+  },
+  "features": [
+    {
+      "code": "demo-home",
+      "explain": "打开示例插件主界面，查看运行环境与指令用法",
+      "cmds": ["uTools 示例", "示例插件"]
+    },
+    {
+      "code": "demo-save-image",
+      "explain": "匹配图片：预览后另存为本地文件",
+      "cmds": [
+        {
+          "type": "img",
+          "label": "图片另存为文件"
+        }
+      ]
+    },
+    {
+      "code": "demo-file-info",
+      "explain": "匹配文件(夹)：查看信息、复制路径、读取文件夹",
+      "cmds": [
+        {
+          "type": "files",
+          "label": "查看文件信息"
+        },
+        {
+          "type": "files",
+          "fileType": "directory",
+          "label": "读取文件夹内容",
+          "maxLength": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      这里刻意没有加 CSP meta：uTools 以本地协议加载页面，origin 是 opaque 的，
+      `script-src 'self'` 反而会把 index.js 拦掉，导致白屏。
+      确有需要时再按实际协议自行收紧。
+    -->
+    <title>uTools 示例插件</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="hero">
+        <img class="hero__logo" src="logo.png" alt="logo" />
+        <div class="hero__meta">
+          <h1 class="hero__title">uTools 示例插件</h1>
+          <p class="hero__sub" id="hero-sub">正在读取环境信息…</p>
+        </div>
+        <span class="badge" id="env-badge">PROD</span>
+      </header>
+
+      <main class="panel" id="panel"></main>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="index.js"></script>
+  </body>
+</html>

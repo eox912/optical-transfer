@@ -1,0 +1,64 @@
+/* index.css —— 主控制面板专属样式 */
+
+.panel {
+  display: grid;
+  gap: 10px;
+}
+
+/* ------------------------------- 模式选择 ------------------------------- */
+
+.modes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.mode-wrap {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.mode {
+  padding: 8px 6px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.mode:hover:not(:disabled) {
+  border-color: var(--brand);
+}
+
+.mode--on {
+  border-color: var(--brand);
+  background: var(--brand-soft);
+  color: var(--brand);
+  font-weight: 600;
+}
+
+.mode--off {
+  opacity: 0.5;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.mode__hint {
+  color: var(--muted);
+  font-size: 10.5px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.params {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}

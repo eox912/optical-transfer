@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 不要加 CSP meta（本地协议下 origin 是 opaque 的，会白屏） -->
+    <title>RaptorQR · 发送</title>
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body class="rq-code-body">
+    <div class="rq-hud">
+      <div class="rq-hud__left">
+        <span class="rq-hud__name" id="hud-name">RaptorQR</span>
+        <span class="rq-hud__meta" id="hud-meta">等待数据…</span>
+      </div>
+      <div class="rq-hud__right">
+        <span class="rq-hud__stat" id="hud-stats">—</span>
+        <span class="badge" id="hud-backend">—</span>
+        <span class="rq-hud__esc">ESC 关闭</span>
+      </div>
+    </div>
+    <canvas id="code-canvas"></canvas>
+    <div class="rq-code-warn" id="hud-warn" hidden></div>
+
+    <!-- 码窗只需要到 player.js：不需要 multiscan / index -->
+    <script src="vendor/qrcode-generator.js"></script>
+    <script src="vendor/jsQR.js"></script>
+    <script src="vendor/raptorq.core.js"></script>
+    <script src="utools-shim.js"></script>
+    <script src="core/protocol.js"></script>
+    <script src="core/fountain.js"></script>
+    <script src="core/qr.js"></script>
+    <script src="core/scan.js"></script>
+    <script src="raptorq-core.js"></script>
+    <script src="core/codecs.js"></script>
+    <script src="layout.js"></script>
+    <script src="settings.js"></script>
+    <script src="player.js"></script>
+    <script src="sender.js"></script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "decimen-optical-transfer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "uTools 插件：屏幕动态二维码隔空传输（LT 喷泉码 + SHA-256 校验 + 边收边落盘，最大 64MB）",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node test/plugin.test.js"
+  },
+  "keywords": ["utools", "qrcode", "fountain-code", "optical-transfer"],
+  "license": "MIT"
+}

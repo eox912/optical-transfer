@@ -1,0 +1,13 @@
+{
+  "name": "optical-transfer-extension",
+  "version": "0.1.0",
+  "private": true,
+  "description": "光学隔空传输 · 浏览器扩展版（Chrome/Edge MV3，置顶码窗 + 屏幕常亮）",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node build.mjs && node test/extension.test.js",
+    "check": "node test/extension.test.js"
+  },
+  "author": "光学隔空传输",
+  "license": "MIT"
+}

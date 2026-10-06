@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 刻意不加 CSP meta：uTools 以本地协议加载页面，origin 是 opaque 的，
+         script-src 'self' 会把脚本直接拦掉导致白屏（PLUGIN-SPEC §3.1）。 -->
+    <title>AirScan 动态码</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body class="stage-body">
+    <div class="stage">
+      <canvas id="code"></canvas>
+    </div>
+
+    <aside class="hud" id="hud">
+      <div class="hud__head">
+        <span class="hud__badge">AirScan</span>
+        <strong id="hud-name">—</strong>
+      </div>
+      <dl class="hud__grid">
+        <dt>模式</dt>
+        <dd id="hud-mode">—</dd>
+        <dt>大小</dt>
+        <dd id="hud-size">—</dd>
+        <dt>分片</dt>
+        <dd><span id="hud-shown">0</span> / <span id="hud-symbols">—</span></dd>
+        <dt>进度</dt>
+        <dd id="hud-progress">0%</dd>
+        <dt>当前</dt>
+        <dd id="hud-frame">—</dd>
+        <dt>QR</dt>
+        <dd><span id="hud-version">—</span> · <span id="hud-modules">—</span></dd>
+        <dt>帧率</dt>
+        <dd><span id="hud-fps">—</span> fps</dd>
+        <dt>一轮</dt>
+        <dd id="hud-round">—</dd>
+        <dt>已播</dt>
+        <dd id="hud-elapsed">0s</dd>
+        <dt>补发</dt>
+        <dd id="hud-repair">—</dd>
+      </dl>
+      <p class="hud__hint" id="hud-hint">按 Esc 关闭</p>
+    </aside>
+
+    <div class="stage__tools">
+      <button class="btn btn--ghost" id="toggle-hud" type="button">隐藏信息</button>
+      <button class="btn btn--ghost" id="close-code" type="button">关闭 (Esc)</button>
+    </div>
+
+    <script>
+      // 必须先置位：sender.js 只在这个标记为真时才启动 sender.html 的页面控制器
+      window.__ASQ_SENDER_PAGE__ = true
+    </script>
+    <script src="vendor/qrcode-generator.js"></script>
+    <script src="vendor/jsQR.js"></script>
+    <script src="core/protocol.js"></script>
+    <script src="core/fountain.js"></script>
+    <script src="core/qr.js"></script>
+    <script src="core/scan.js"></script>
+    <script src="core/codecs.js"></script>
+    <script src="sender.js"></script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+# Rust 构建产物（编译 wasm 时才出现，不要提交）
+core-rs/target/
+
+# 依赖与编辑器
+node_modules/
+.DS_Store
+.idea/
+.vscode/
+*.log
+
+# 发布目录里不允许出现 sourcemap / 源码管理目录（规范第 3 节第 8 条）
+dist/**/*.js.map
+dist/**/*.css.map

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>光码发送（DOT）</title>
+    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="sender.css" />
+  </head>
+  <body class="sender">
+    <div class="stage" id="stage">
+      <canvas id="qr"></canvas>
+    </div>
+
+    <div class="hud" id="hud"></div>
+    <button class="close" id="close" type="button">关闭（Esc）</button>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="vendor/qrcode-generator.js"></script>
+    <script src="vendor/jsQR.js"></script>
+    <script src="utools-shim.js"></script>
+    <script src="core/protocol.js"></script>
+    <script src="core/fountain.js"></script>
+    <script src="core/qr.js"></script>
+    <script src="core/scan.js"></script>
+    <script src="core/codecs.js"></script>
+
+    <script src="util.js"></script>
+    <script src="protocol-ext.js"></script>
+    <script src="session.js"></script>
+    <script src="dom.js"></script>
+    <script src="sender.js"></script>
+
+    <script>
+      setTimeout(function () {
+        if (!window.DOT || !window.DOT.senderBooted) {
+          var node = document.getElementById('hud')
+          if (node) node.textContent = '码窗脚本没有启动成功，请打开开发者工具查看报错。'
+        }
+      }, 2500)
+    </script>
+  </body>
+</html>

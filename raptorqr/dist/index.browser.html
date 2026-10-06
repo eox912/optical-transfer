@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      这里刻意没有 CSP meta：uTools 以本地协议加载页面，origin 是 opaque 的，
+      `script-src 'self'` 会把 index.js 直接拦掉 → 白屏。
+    -->
+    <title>RaptorQR</title>
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <div class="rq-app">
+      <header class="rq-header">
+        <img class="rq-logo" src="logo.png" alt="RaptorQR" />
+        <div class="rq-title">
+          <h1>RaptorQR</h1>
+          <p id="rq-subtitle">多码并行 · 光学隔空传输</p>
+        </div>
+        <span class="badge" id="rq-backend">检测中…</span>
+      </header>
+      <main id="panel"></main>
+    </div>
+    <div class="toast" id="rq-toast"></div>
+
+    <!--
+      加载顺序固定：vendor 两个 → core 五个（codecs.js 最后）。
+      vendor/raptorq.core.js 是真正的 WASM 内核胶水（UMD，被 <script> 引入时
+      会自己挂上 OTP.raptorqCore 并在后台实例化 wasm）；raptorq-core.js 是
+      插件自己的加载器/状态上报，放在 codecs.js 之前只是保持顺序清晰——
+      codecs.js 每次用的时候现取 OTP.raptorqCore，并不依赖加载顺序。
+    -->
+    <script src="vendor/qrcode-generator.js"></script>
+    <script src="vendor/jsQR.js"></script>
+    <script src="vendor/raptorq.core.js"></script>
+    <script src="utools-shim.js"></script>
+    <script src="core/protocol.js"></script>
+    <script src="core/fountain.js"></script>
+    <script src="core/qr.js"></script>
+    <script src="core/scan.js"></script>
+    <script src="raptorq-core.js"></script>
+    <script src="core/codecs.js"></script>
+    <script src="layout.js"></script>
+    <script src="settings.js"></script>
+    <script src="index.js"></script>
+    <script src="browser-shell.js"></script>
+  </body>
+</html>

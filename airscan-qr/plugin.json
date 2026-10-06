@@ -1,0 +1,23 @@
+{
+  "main": "index.html",
+  "logo": "logo.png",
+  "preload": "preload.js",
+  "pluginSetting": { "single": true, "height": 620 },
+  "features": [
+    {
+      "code": "asq-send",
+      "explain": "打开发送面板（顺序分片轮播，切片/帧率可调）",
+      "cmds": ["隔空传输", "AirScan 发送"]
+    },
+    {
+      "code": "asq-receive",
+      "explain": "打开摄像头接收窗口，扫码还原文件",
+      "cmds": ["隔空扫码接收", "AirScan 扫码接收"]
+    },
+    {
+      "code": "asq-send-files",
+      "explain": "把选中的文件隔空发送",
+      "cmds": [{ "type": "files", "label": "隔空发送这些文件", "maxLength": 50 }]
+    }
+  ]
+}

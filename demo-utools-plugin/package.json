@@ -1,0 +1,12 @@
+{
+  "name": "utools-plugin-demo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "原生 HTML + JS 的 uTools 插件工程模板（零依赖，无需构建）",
+  "scripts": {
+    "check": "node --check preload.js && node --check index.js",
+    "validate": "node -e \"JSON.parse(require('fs').readFileSync('plugin.json','utf8')); console.log('plugin.json 语法正确')\""
+  },
+  "keywords": ["utools", "utools-plugin"],
+  "license": "MIT"
+}

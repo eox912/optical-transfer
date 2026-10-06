@@ -1,0 +1,11 @@
+# 依赖与编辑器
+node_modules/
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+
+# 打包产物（uTools 只识别 html/css/js，构建产物放在这里再打包）
+dist/
+*.upx
