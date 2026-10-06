@@ -19,12 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-本仓库还以源码形式打包了以下第三方组件，它们各自遵循自己的许可证，
-详见 shared/vendor/THIRD-PARTY.md：
-
-  - qrcode-generator  (MIT)           Kazuhiko Arase
-  - jsQR              (Apache-2.0)     cozmo
-  - raptorq           (Apache-2.0)     RFC 6330 实现，编译为 vendor/raptorq.core.wasm
